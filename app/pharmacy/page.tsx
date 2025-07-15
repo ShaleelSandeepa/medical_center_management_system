@@ -150,7 +150,7 @@ export default function PharmacyPage() {
                 <AlertCircle className="w-6 h-6 text-orange-600 dark:text-orange-400" />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

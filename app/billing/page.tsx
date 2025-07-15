@@ -31,7 +31,7 @@ export default function BillingPage() {
   const selectedPrescriptionData = readyForBilling.find(p => p.id === selectedPrescription);
 
   const calculateTotal = () => {
-    if (!selectedPrescriptionData) return { subtotal: 0, tax: 0, total: 0 };
+    if (!selectedPrescriptionData) return { subtotal: 0, discountAmount: 0, tax: 0, total: 0 };
     
     const subtotal = selectedPrescriptionData.medicines.reduce((sum, med) => {
       return sum + (med.medicine.price * med.quantity);

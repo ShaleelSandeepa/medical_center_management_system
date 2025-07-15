@@ -88,7 +88,7 @@ export default function DashboardPage() {
       case 'cashier':
         return [
           { title: 'Today\'s Transactions', value: stats.today, icon: DollarSign, color: 'blue' },
-          { title: 'Today\'s Revenue', value: `$${stats.revenue.toFixed(2)}`, icon: TrendingUp, color: 'green' },
+          { title: 'Today\'s Revenue', value: `$${(stats.revenue ?? 0).toFixed(2)}`, icon: TrendingUp, color: 'green' },
           { title: 'Pending Billing', value: stats.pending, icon: Clock, color: 'orange' },
           { title: 'Total Transactions', value: stats.total, icon: Activity, color: 'purple' }
         ];
