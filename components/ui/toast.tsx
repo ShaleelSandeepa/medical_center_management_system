@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle, AlertCircle, Info } from 'lucide-react';
+import { createContext, useContext } from 'react';
 
-interface ToastProps {
+// Export the ToastProps interface
+export interface ToastProps {
   id: string;
   type: 'success' | 'error' | 'info';
   title: string;
@@ -12,6 +14,9 @@ interface ToastProps {
   duration?: number;
   onClose: (id: string) => void;
 }
+
+// Add ToastActionElement type
+export type ToastActionElement = React.ReactElement<any>;
 
 export function Toast({ id, type, title, description, duration = 5000, onClose }: ToastProps) {
   const [isVisible, setIsVisible] = useState(true);
@@ -69,5 +74,32 @@ export function Toast({ id, type, title, description, duration = 5000, onClose }
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+export function ToastProvider({ children }: { children: React.ReactNode }) {
+  return <div className="fixed top-0 right-0 z-50 p-4 space-y-2">{children}</div>;
+}
+
+export function ToastViewport() {
+  return null; // This is handled by ToastProvider positioning
+}
+
+export function ToastTitle({ children }: { children: React.ReactNode }) {
+  return <p className="text-sm font-medium text-gray-900">{children}</p>;
+}
+
+export function ToastDescription({ children }: { children: React.ReactNode }) {
+  return <p className="mt-1 text-sm text-gray-500">{children}</p>;
+}
+
+export function ToastClose({ onClick }: { onClick?: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="ml-4 inline-flex text-gray-400 hover:text-gray-600"
+    >
+      <X className="w-4 h-4" />
+    </button>
   );
 }

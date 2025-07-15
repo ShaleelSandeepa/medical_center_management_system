@@ -15,18 +15,16 @@ export function Toaster() {
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {toasts.map(function ({ id, title, description, action, type, duration, onClose }) {
         return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && (
-                <ToastDescription>{description}</ToastDescription>
-              )}
-            </div>
-            {action}
-            <ToastClose />
-          </Toast>
+          <Toast
+            id={id}
+            type={type}
+            duration={duration}
+            onClose={onClose}
+            title={title}
+            description={description}
+          />
         );
       })}
       <ToastViewport />
